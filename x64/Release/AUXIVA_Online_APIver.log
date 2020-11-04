@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(459,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (AUXIVA_Online_APIver.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AUXIVA_mask_Online.cpp
+  코드를 생성하고 있습니다.
+  0 of 62 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  AUXIVA_Online_APIver.vcxproj -> C:\Users\신의협\OneDrive\Download\API_AUXIVA_mask_online-master\x64\Release\AUXIVA_mask_Online_APIver.exe
