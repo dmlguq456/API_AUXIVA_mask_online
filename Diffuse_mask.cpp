@@ -30,11 +30,7 @@ CDR::CDR()
 	}
 
 	R_freq = new double [nfreq];
-	mic_array = new double *[Nch];
-	for (i = 0; i < Nch; i++)
-	{
-		mic_array[i] = new double[3];
-	}
+	
 	Cnn = new double* [Npair];
 	for (i = 0; i < Npair; i++)
 	{
@@ -113,7 +109,7 @@ CDR::~CDR()
 
 }
 
-void CDR::CDR_mask(double **input, int frame_idx, double *Mask)
+void CDR::CDR_mask(double **input, int frame_idx, double *Mask, double **mic_array)
 {
 	int i, ch, freq_idx, p_idx;
 	int p1, p2;
@@ -138,21 +134,6 @@ void CDR::CDR_mask(double **input, int frame_idx, double *Mask)
 	{
 		R_freq[i] = i * SamplingFreq / double(nfft);
 	}
-	mic_array[0][0] = 0;
-	mic_array[0][1] = 0;
-	mic_array[0][2] = -0.095;
-	mic_array[1][0] = 0;
-	mic_array[1][1] = 0;
-	mic_array[1][2] = 0.095;
-	mic_array[2][0] = 0;
-	mic_array[2][1] = 0.10;
-	mic_array[2][2] = 0.095;
-	mic_array[3][0] = 0;
-	mic_array[3][1] = -0.10;
-	mic_array[3][2] = -0.095;
-	mic_array[4][0] = 0;
-	mic_array[4][1] = 0.10;
-	mic_array[4][2] = -0.095;
 
 	// Mic distance at every Mic pair and Coherence of Ideal Diffuse Noise
 	p_idx = 0;
@@ -198,7 +179,11 @@ void CDR::CDR_mask(double **input, int frame_idx, double *Mask)
 					Auto[p_idx][1][freq_idx] = X[p2][re] * X[p2][re] + X[p2][im] * X[p2][im];
 					if (Auto[p_idx][0][freq_idx] < Cnn[p_idx][freq_idx] * Cnn[p_idx][freq_idx])
 					{
-						Cnn[p_idx][freq_idx] = Cnn[p_idx][freq_idx] * Cnn[p_idx][freq_idx];
+						Auto[p_idx][0][freq_idx] = Cnn[p_idx][freq_idx] * Cnn[p_idx][freq_idx];
+					}
+					if (Auto[p_idx][1][freq_idx] < Cnn[p_idx][freq_idx] * Cnn[p_idx][freq_idx])
+					{
+						Auto[p_idx][1][freq_idx] = Cnn[p_idx][freq_idx] * Cnn[p_idx][freq_idx];
 					}
 					Cross[p_idx][re] = X[p1][re] * X[p2][re] + X[p1][im] * X[p2][im];
 					Cross[p_idx][im] = X[p1][im] * X[p2][re] - X[p1][re] * X[p2][im];

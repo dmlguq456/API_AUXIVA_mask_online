@@ -34,7 +34,6 @@ AUXIVA_MASK::AUXIVA_MASK()
 		else
 		{
 			gamma[i] = gamma_n;
-
 		}
 	}
 	Nrank = 2;
@@ -622,6 +621,10 @@ void AUXIVA_MASK::AUXIVA_MASK_lemma(double** input, int frameInd, double** outpu
 	// scaled variance by Target Mask
 	for (k = 0; k < nfreq; k++)
 	{
+		if (Mask[k] < 1e-2)
+		{
+			Mask[k] = 1e-2;
+		}
 		//  p with Variances by Mask
 		if (frameInd == 3)
 		{

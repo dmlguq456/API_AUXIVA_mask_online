@@ -1,4 +1,4 @@
-#define Nch			5
+#define Nch			4
 #define nWin		1024
 #define BufferSize		256
 #define SamplingFreq	16000
@@ -87,7 +87,6 @@ private:
 
 	double* win_STFT;
 	double* R_freq;
-	double** mic_array;
 	double** Cnn;
 	double** Cxx;
 	double** X;
@@ -99,5 +98,5 @@ private:
 public:
 	CDR();
 	~CDR();
-	void CDR_mask(double** input, int frameInd, double* Mask);
+	void CDR_mask(double** input, int frameInd, double* Mask, double** mic_array);
 };
