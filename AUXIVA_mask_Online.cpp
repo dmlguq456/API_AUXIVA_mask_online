@@ -119,7 +119,8 @@ AUXIVA_MASK::AUXIVA_MASK()
 	{
 		lambda[i] = new double[nfreq];
 	}
-	lambda_n = new double [nfreq]; // Nch X Nfreq
+	lambda_n = new double[nfreq]; // Nch X Nfreq
+	lambda_t = new double[nfreq]; // Nch X Nfreq
 	for (i = 0; i < Nch; i++)
 	{
 		for (j = 0; j < nfreq; j++)
@@ -400,6 +401,7 @@ AUXIVA_MASK::~AUXIVA_MASK()
 	delete[] diag_WV;
 	delete[] win_STFT;
 	delete[] lambda_n;
+	delete[] lambda_t;
 	//frameInd over 2
 	for (i = 0; i < Nch; i++)
 	{
@@ -617,71 +619,53 @@ void AUXIVA_MASK::AUXIVA_MASK_lemma(double** input, int frameInd, double** outpu
 		}
 	}
 #else
-	for (i = 0; i < Nch; i++)
+	// scaled variance by Target Mask
+	for (k = 0; k < nfreq; k++)
 	{
-
-		for (k = 0; k < nfreq; k++)
+		//  p with Variances by Mask
+		if (frameInd == 3)
 		{
-			lambda[i][k] = gamma[i] * lambda[i][k] + (1 - gamma[i]) * Pwr[i][k];
+			eta[0][k] = Mask[k];
+			eta[1][k] = 1 - Mask[k];
+			lambda_t[k] = Pwr[0][k];
+			double temp = 0;
+			for (j = 1; j < Nch; j++)
+			{
+				temp += Pwr[j][k];
+			}
+			lambda_n[k] = temp / (Nch - 1);
+		}
+		else
+		{
+			eta[0][k] = f_alpha * eta[0][k] + (1 - f_alpha) * Mask[k];
+			eta[1][k] = f_alpha * eta[1][k] + (1 - f_alpha) * (1 - Mask[k]);
+			lambda_t[k] = gamma_t * lambda_t[k] + (1 - gamma_t) * Pwr[0][k];
+			double temp = 0;
+			for (j = 1; j < Nch; j++)
+			{
+				temp += Pwr[j][k];
+			}
+			lambda_n[k] = gamma_n * lambda_n[k] + (1 - gamma_n) * temp / (Nch - 1);
+
+		}
+		if (Mask[k] * lambda_t[k] < eps_floor)
+		{
+			p[0][k] = (1 - f_alpha) / eps_floor;
+		}
+		else
+		{
+			p[0][k] = (1 - f_alpha) / (Mask[k] * lambda_t[k] / eta[0][k]);
+		}
+		if ((1 - Mask[k]) * lambda_n[k] < eps_floor)
+		{
+			p[1][k] = (1 - f_alpha) / eps_floor;
+		}
+		else
+		{
+			p[1][k] = (1 - f_alpha) / ((1 - Mask[k]) * lambda_n[k] / eta[1][k]);
 		}
 	}
 #endif
-	// scaled variance by Target Mask
-	for (i = 0; i < 2; i++)
-	{
-		for (k = 0; k < nfreq; k++)
-		{
-			// Noise Dependency by Mean Value of Noise Variances
-			if (i == 1)
-			{
-				lambda_n[k] = 0;
-				for (j = 1; j < Nch; j++)
-				{
-					lambda_n[k] += lambda[j][k];
-				}
-				lambda_n[k] = lambda_n[k] / (Nch - 1);
-			}
-			//  p with Variances by Mask
-			if (i == 0)
-			{
-				if (frameInd == 3)
-				{
-					eta[i][k] = Mask[k];
-				}
-				else
-				{
-					eta[i][k] = f_alpha * eta[i][k] + (1 - f_alpha) * Mask[k];
-				}
-				if (Mask[k] * lambda[i][k] < eps_floor)
-				{
-					p[i][k] = (1 - f_alpha) / eps_floor;
-				}
-				else
-				{
-					p[i][k] = (1 - f_alpha) / (Mask[k] * lambda[i][k] / eta[i][k]);
-				}
-			}
-			else
-			{
-				if (frameInd == 3)
-				{
-					eta[i][k] = 1-Mask[k];
-				}
-				else
-				{
-					eta[i][k] = f_alpha * eta[i][k] + (1 - f_alpha) * (1 - Mask[k]);
-				}
-				if ((1 - Mask[k]) * lambda_n[k] < eps_floor)
-				{
-					p[i][k] = (1 - f_alpha) / eps_floor;
-				}
-				else
-				{
-					p[i][k] = (1 - f_alpha) / ((1 - Mask[k]) * lambda_n[k] / eta[i][k]);
-				}
-			}
-		}
-	}
 
 	for (ch = 0; ch < 2; ch++)
 	{

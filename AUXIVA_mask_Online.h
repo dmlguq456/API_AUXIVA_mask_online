@@ -32,6 +32,7 @@ private:
 	int Nrank;
 	double** lambda; // Nch X Nrank
 	double* lambda_n;
+	double* lambda_t;
 	double* D; // Nfreq
 	double** V_nmf; // Nch X Nrank
 	double*** T_nmf; // Nch X Nrank X Nfreq
