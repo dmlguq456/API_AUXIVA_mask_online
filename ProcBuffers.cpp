@@ -107,13 +107,21 @@ ProcBuffers::~ProcBuffers()
 #endif
 
 #if MAKE_FILE == 1
-	char file_name[2][500];
+	char file_name[3][500];
 	for (ch = 0; ch < 1; ch++)
 	{
 		fclose(IVA[ch]);
 		sprintf(file_name[0], ".\\output\\IVA_ch%d.pcm", ch + 1);
-		sprintf(file_name[1], ".\\output\\IVA_ch%d.wav", ch + 1);
+		sprintf(file_name[1], ".\\output\\IVA_Target.wav");
 		pcm2wav(file_name[0], file_name[1], (long)(SamplingFreq));
+		remove(file_name[0]);
+	}
+	for (ch = 1; ch < Nch; ch++)
+	{
+		fclose(IVA[ch]);
+		sprintf(file_name[0], ".\\output\\IVA_ch%d.pcm", ch + 1);
+		sprintf(file_name[2], ".\\output\\IVA_Noise_ch%d.wav", ch);
+		pcm2wav(file_name[0], file_name[2], (long)(SamplingFreq));
 		remove(file_name[0]);
 	}
 	delete[] IVA;
