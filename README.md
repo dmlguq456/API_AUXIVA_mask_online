@@ -1,7 +1,5 @@
 # API_AuxIVA_mask_Online
 
----
-
 # Target Speech Extraction **API**
 
 서강대 전자공학과 박현민 교수님 연구실에서 제작한 API이며, 타겟 화자가 배경 잡음 속에서 발화하는 다채널 음원 신호를 입력으로 해당 알고리즘이 예측하여 잡음이 억제된 타겟 화자 추출 결과를 반환 해주는 API입니다.
