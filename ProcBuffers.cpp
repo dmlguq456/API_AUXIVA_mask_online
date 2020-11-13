@@ -34,8 +34,7 @@ ProcBuffers::ProcBuffers()
 	// ---------- Mic Configuration Setting ---------- //
 	// 마이크의 좌표를 입력 
 	// 모든 mic pair간의 거리를 찾기 위해서 필요한 것으로 따라서
-	// 1. reference mic에 해당하는 mic_array[0]은 모두 0으로 설정
-	// 2. x.y.z 기준은 임의로 잡고 진행해도 전혀 무방
+	// x.y.z 기준은 임의로 잡고 진행해도 전혀 무방
 	// mic_array[ch][0] = mic_array[0]과의 상대적인 x좌표입력
 	// mic_array[ch][1] = mic_array[0]과의 상대적인 y좌표입력
 	// mic_array[ch][2] = mic_array[0]과의 상대적인 z좌표입력
