@@ -58,7 +58,7 @@ x64로 빌드를 진행합니다.
 
 ## Execution
 
-### **BSS API**
+### **Target Speech Extraction API**
 
 N개의 단일 채널 wav 입력 파일(**각 파일은 단일 채널**)을 입력 인수로 사용합니다. 출력 결과는 output 폴더 내부에 저장됩니다. **output 디렉토리가 없으면 오류가 발생합니다.**
 
