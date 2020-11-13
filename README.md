@@ -72,42 +72,26 @@ N개의 단일 채널 wav 입력 파일(**각 파일은 단일 채널**)을 입�
 API_BSS input0.wav input1.wav input2.wav input3.wav input4.wav
 ```
 
+샘플 입력과 출력은 각각 input과 output 디렉토리에 포함되어있습니다.
+
 - **샘플 입력**
 
 **input0.wav**
-
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input0.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input0.wav)
-
 **input1.wav**
-
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input1.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input1.wav)
-
 **input2.wav**
-
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input2.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input2.wav)
-
 **input3.wav**
-
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input3.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input3.wav)
-
 **input4.wav**
-
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input4.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/input4.wav)
 
 **1번 채널의 스펙트로그램**
 
-![API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled.png](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled.png)
+![Spec1](Sample_Spec/IN1_Spec.png)
 
 - **샘플 출력**
 
 **IVA_Target.wav**
 
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/IVA_Target.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/IVA_Target.wav)
-
-![API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled%201.png](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled%201.png)
+![Spec2](Sample_Spec/IVA_Target_Spec.png)
 
 **IVA_Noise_ch1.wav**
 
-[API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/IVA_Noise_ch1.wav](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/IVA_Noise_ch1.wav)
-
-![API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled%202.png](API_AuxIVA_mask_Online%209e59b6654bf14afdb7658f9af585b7dc/Untitled%202.png)
+![Spec3](Sample_Spec/IVA_Noise_ch1_Spec.png)
