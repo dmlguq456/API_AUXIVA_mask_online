@@ -1,4 +1,4 @@
-#define Nch			4
+#define Nch			5
 #define nWin		1024
 #define BufferSize		256
 #define SamplingFreq	16000

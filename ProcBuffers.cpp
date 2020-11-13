@@ -76,7 +76,7 @@ ProcBuffers::ProcBuffers()
 #if MAKE_FILE == 1
 	char file_name[2][500];
 	IVA = new FILE*[Nch];
-	for (ch = 0; ch < 1; ch++)
+	for (ch = 0; ch < Nch; ch++)
 	{
 		sprintf(file_name[0], ".\\output\\IVA_ch%d.pcm", ch + 1);
 		IVA[ch] = fopen(file_name[0], "wb");
@@ -151,7 +151,7 @@ void ProcBuffers::Process(double **input, int Nframe)
 		iip_CDR->CDR_mask(input_temp, Nframe, Mask, mic_array);
 		iip_AUX->AUXIVA_MASK_lemma(input_temp, Nframe, output, Mask);
 #if MAKE_FILE == 1
-		for (i = 0; i < 1; i++)
+		for (i = 0; i < Nch; i++)
 		{
 			for (j = 0; j < BufferSize; j++)
 			{
