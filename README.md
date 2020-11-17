@@ -92,6 +92,11 @@ API_BSS input0.wav input1.wav input2.wav input3.wav input4.wav
 
 ![Spec1](Sample_Spec/IN1_Spec.png)
 
+**샘플 입력에 대한 평균 CDR mask**
+
+![Spec5](Sample_Spec/CDR_mask.png)
+
+
 - **샘플 출력**
 
 **IVA_Target.wav**
