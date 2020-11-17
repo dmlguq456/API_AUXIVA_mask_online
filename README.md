@@ -4,9 +4,17 @@
 
 서강대 전자공학과 박형민 교수님 연구실에서 제작한 API이며, 타겟 화자가 배경 잡음 속에서 발화하는 다채널 음원 신호를 입력으로 해당 알고리즘이 예측하여 잡음이 억제된 타겟 화자 추출 결과를 반환 해주는 API입니다.
 
-## **독립성분분석(Independent Vector Analysis, IVA)**
+## **IVA(Independent Vector Analysis)**
 
 여러 독립적인 신호가 뒤섞인 음원에 대해서 각 출력 채널이 최대한 독립적인 신호로 구성되도록 분리하는 알고리즘입니다. 이를 통해 노이즈와 타겟 음원을 서로 분리하여 타겟 음원을 추출할 수 있습니다.
+
+
+## **CDR(Coherence-to-Diffuseness) mask**
+
+target mask는 이떤 입력 신호가 주어졌을 때 time-frequency domain에서 target의 성분이 어느정도의 비율로 분포하는지를 나타내는 값을 말합니다. 따라서 모든 성분의 값은 0과 1사이에서 결정됩니다. 
+
+CDR이란 완전히 방향성을 상실한 음원(Diffuseness)을 기준으로 방향성이 강한 정도 (Coherence)를 비율로 나타낸 값입니다. 따라서 방향성을 가지는 target 음원이라면 이 값을 활용해서 mask를 효과적으로 예측할 수 있습니다.
+
 
 ## Setting Parameter in AUXIVA_mask_Online.h
 
