@@ -16,6 +16,10 @@ target mask는 이떤 입력 신호가 주어졌을 때 time-frequency domain에
 CDR이란 완전히 방향성을 상실한 음원(Diffuseness)을 기준으로 방향성이 강한 정도 (Coherence)를 비율로 나타낸 값입니다. 이 값을 계산하려면 마이크 간의 거리를 필요로 합니다. 따라서 방향성을 가지는 target 음원이라면 이 값을 활용해서 mask를 효과적으로 예측할 수 있습니다.
 
 
+
+
+
+
 ## Setting Parameter in AUXIVA_mask_Online.h
 
 ```cpp
